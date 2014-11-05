@@ -33,16 +33,22 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
+.controller('RainbowCtrl', function($scope, $ionicModal) {
+  $scope.rainbow = function() {
+    alert("hola");
+  };
+})
+
+.controller('FriendsCtrl', function($scope) {
+  $scope.friends = [
+    { name: 'Katie', color: "#CC33FF", id: 1 },
+    { name: 'Nishant', color: "#FFCC11", id: 2 },
+    { name: 'Sang', color: "#FF3533", id: 3 },
+    { name: 'Manuel', color: "#FFCC33", id: 4 },
+    { name: 'Gus', color: "#CC1A33", id: 5 },
+    { name: 'Ensham', color: "#111433", id: 6 }
   ];
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
+.controller('FriendCtrl', function($scope, $stateParams) {
 });
