@@ -50,5 +50,20 @@ angular.module('starter.controllers', [])
   ];
 })
 
-.controller('FriendCtrl', function($scope, $stateParams) {
+.controller('FriendCtrl', function($scope, $stateParams, $filter, $ionicSlideBoxDelegate) {
+  $scope.friends = [
+    { name: 'Katie', color: "#CC33FF", id: 1 },
+    { name: 'Nishant', color: "#FFCC11", id: 2 },
+    { name: 'Sang', color: "#FF3533", id: 3 },
+    { name: 'Manuel', color: "#FFCC33", id: 4 },
+    { name: 'Gus', color: "#CC1A33", id: 5 },
+    { name: 'Ensham', color: "#111433", id: 6 }
+  ];
+  
+  var friendId = parseInt($stateParams.friendId, 10);
+  $scope.friend = $filter('filter')($scope.friends, function (d) {return d.id === friendId;})[0];
+  
+  $scope.nextSlide = function() {
+    $ionicSlideBoxDelegate.next();
+  }
 });
