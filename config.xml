@@ -9,14 +9,25 @@
     </author>
   <content src="index.html"/>
   <access origin="*"/>
+  <preference name="permissions" value="none" />
   <preference name="phonegap-version" value="3.5.0" />
-  <preference name="orientation"                value="default" />        <!-- all: default means both landscape and portrait are enabled -->
-  <preference name="target-device"              value="universal" />      <!-- all: possible values handset, tablet, or universal -->
-  <preference name="fullscreen"                 value="true" />           <!-- all: hides the status bar at the top of the screen -->
-  <preference name="webviewbounce" value="false"/>
-  <preference name="UIWebViewBounce" value="false"/>
-  <preference name="DisallowOverscroll" value="true"/>
-  <preference name="BackupWebStorage" value="none"/>
+  <preference name="orientation" value="default" />
+  <preference name="target-device" value="universal" />
+  <preference name="fullscreen" value="true" />
+  <preference name="webviewbounce" value="true" />
+  <preference name="prerendered-icon" value="true" />
+  <preference name="stay-in-webview" value="false" />
+  <preference name="ios-statusbarstyle" value="black-opaque" />
+  <preference name="detect-data-types" value="true" />
+  <preference name="exit-on-suspend" value="false" />
+  <preference name="show-splash-screen-spinner" value="true" />
+  <preference name="auto-hide-splash-screen" value="true" />
+  <preference name="disable-cursor" value="false" />
+  <preference name="android-minSdkVersion" value="7" />
+  <preference name="android-installLocation" value="auto" />
+  <gap:plugin name="de.appplant.cordova.plugin.background-mode" version="0.5.0" />
+  <gap:plugin name="org.apache.cordova.vibration" version="0.3.7" />
+  <gap:plugin name="org.apache.cordova.dialogs" version="0.2.6" />
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
