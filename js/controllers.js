@@ -13,7 +13,7 @@ angular.module('starter.controllers', ['ionic'])
  
   //Form data for the login modal
   $scope.loginData = {};
-  $scope.user = new Parse.User();
+  //$scope.user = new Parse.User();
 alert("h1!");
   $scope.closeLogin = function() {
     $scope.modal.hide();
