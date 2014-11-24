@@ -314,13 +314,13 @@ angular.module('starter.controllers', ['ionic'])
         }],
         "chartScrollbar": {},
         "chartCursor": {
-          "categoryBalloonDateFormat": "YYYY MMM DD, JJ:NN:SS",
+          "categoryBalloonDateFormat": "YYYY MMM DD",
           "cursorAlpha": 0,
           "zoomable": false
         },
         "categoryField": "date",
         "categoryAxis": {
-          "dateFormats": [{"period":'ss',"format":'JJ:NN:SS'},{
+          "dateFormats": [{
             "period": "DD",
             "format": "DD"
           }, {
