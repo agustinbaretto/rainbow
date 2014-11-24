@@ -10,19 +10,19 @@ angular.module('starter.controllers', ['ionic'])
     $scope.modal = modal;
     //$scope.getLoginStatus();
   });
-  
+  alert("ho!");
   //Form data for the login modal
   $scope.loginData = {};
   $scope.user = new Parse.User();
-
+alert("h1!");
   $scope.closeLogin = function() {
     $scope.modal.hide();
   };
-
+alert("h2!");
   $scope.login = function() {
     $scope.modal.show();
   };
-  
+alert("h3!");  
 
   $scope.getLoginStatus = function() {
     openFB.getLoginStatus(
@@ -37,7 +37,7 @@ angular.module('starter.controllers', ['ionic'])
       },{scope: 'email,publish_actions'}
     );
   };
-  
+alert("h4!");  
   //Logs in to FB and returns user
   $scope.fbLogin = function() {
     openFB.login(
@@ -63,7 +63,7 @@ angular.module('starter.controllers', ['ionic'])
       },{scope: 'email,publish_actions'}
     );
   }
-  
+alert("h5!");  
   // Open the login modal
   $scope.parseLogin = function() {
     Parse.User.logIn($scope.user.get("username"), $scope.user.get("fbid"), {
@@ -77,7 +77,7 @@ angular.module('starter.controllers', ['ionic'])
       }
     });
   };
-  
+  alert("h6!");
   $scope.parseSignup = function() {
     $scope.user.set("password", $scope.user.get("fbid"));
     $scope.user.set("lastColor", Please.make_color({golden: true}));
@@ -93,12 +93,12 @@ angular.module('starter.controllers', ['ionic'])
       }
     });
   };
-  
+  alert("h7!");
   $scope.firstLogin = function() {
     $scope.fbLogin();
     $scope.modal.hide();
   };
-  
+  alert("h8!");
   // Open the login modal
   $scope.doLogin = function() {
     $scope.user.set("username", $scope.loginData.username);
