@@ -1,0 +1,47 @@
+<ion-view>
+  <ion-nav-bar class="bar-positive nav-title-slide-ios7">
+    <ion-nav-back-button class="button-clear"><i class="icon ion-ios7-arrow-back"></i> Back</ion-nav-back-button>
+  </ion-nav-bar>
+  <ion-content class="has-header">
+    <div class="list card">
+      <div class="item item-avatar">
+        <img src="https://graph.facebook.com/{{profile.fbid}}/picture?width=40&height=40"/>
+        <h2>{{profile.username}}</h2>
+        <p>{{profile.color}}</p>
+      </div>
+    
+      <div class="item item-body">
+        <div class="row" style="background-color:{{profile.color}};">
+          <div class="col" style="height: 250px;"></div>
+        </div>
+        <p></p>
+        <p>
+          <a href="#" class="subdued">1 Like</a>
+          <a href="#" class="subdued">5 Comments</a>
+        </p>
+      </div>
+    
+      <div class="item tabs tabs-secondary tabs-icon-left">
+        <a class="tab-item" href="#">
+          <i class="icon ion-thumbsup"></i>
+          Like
+        </a>
+        <div
+          class="fb-like"
+          data-send="true"
+          data-width="450"
+          data-show-faces="true">
+        </div>
+        <a class="tab-item" href="#">
+          <i class="icon ion-chatbox"></i>
+          Comment
+        </a>
+        <a class="tab-item" href="#">
+          <i class="icon ion-share"></i>
+          Share
+        </a>
+      </div>
+    
+    </div>
+  </ion-content>
+</ion-view>
