@@ -1,4 +1,4 @@
-<ion-view title="Friend">
+<ion-view title="My Color">
   <ion-nav-bar class="bar-positive nav-title-slide-ios7">
       <ion-nav-back-button class="button-clear"><i class="icon ion-ios7-arrow-back"></i> Back</ion-nav-back-button>
   </ion-nav-bar>
@@ -6,13 +6,13 @@
     <div class="list card">
     
       <div class="item item-avatar">
-        <img src="mcfly.jpg">
-        <h2>{{friend.name}}</h2>
-        <p>{{friend.color}}</p>
+        <img src="http://graph.facebook.com/{{user.id}}/picture?width=40&height=40"/>
+        <h2>{{user.name}}</h2>
+        <p>{{user.id}}</p>
       </div>
     
       <div class="item item-body">
-        <div class="row" style="background-color:{{friend.color}};">
+        <div class="row" style="background-color:{{color[0}};">
           <div class="col" style="height: 350px;"></div>
         </div>
         <p>
