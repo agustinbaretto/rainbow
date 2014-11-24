@@ -2,27 +2,26 @@ angular.module('starter.controllers', ['ionic'])
 .constant('FORECASTIO_KEY', '79a4cc625c1b8c577a215fa9ae661ded')
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
-  
   //Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
     scope: $scope
   }).then(function(modal) {
     $scope.modal = modal;
-    //$scope.getLoginStatus();
+    $scope.getLoginStatus();
   });
- 
+  
   //Form data for the login modal
   $scope.loginData = {};
-  //$scope.user = new Parse.User();
-alert("h1!");
+  $scope.user = new Parse.User();
+
   $scope.closeLogin = function() {
     $scope.modal.hide();
   };
-alert("h2!");
+
   $scope.login = function() {
     $scope.modal.show();
   };
-alert("h3!");  
+  
 
   $scope.getLoginStatus = function() {
     openFB.getLoginStatus(
@@ -37,7 +36,7 @@ alert("h3!");
       },{scope: 'email,publish_actions'}
     );
   };
-alert("h4!");  
+  
   //Logs in to FB and returns user
   $scope.fbLogin = function() {
     openFB.login(
@@ -63,7 +62,7 @@ alert("h4!");
       },{scope: 'email,publish_actions'}
     );
   }
-alert("h5!");  
+  
   // Open the login modal
   $scope.parseLogin = function() {
     Parse.User.logIn($scope.user.get("username"), $scope.user.get("fbid"), {
@@ -77,7 +76,7 @@ alert("h5!");
       }
     });
   };
-  alert("h6!");
+  
   $scope.parseSignup = function() {
     $scope.user.set("password", $scope.user.get("fbid"));
     $scope.user.set("lastColor", Please.make_color({golden: true}));
@@ -93,12 +92,12 @@ alert("h5!");
       }
     });
   };
-  alert("h7!");
+  
   $scope.firstLogin = function() {
     $scope.fbLogin();
     $scope.modal.hide();
   };
-  alert("h8!");
+  
   // Open the login modal
   $scope.doLogin = function() {
     $scope.user.set("username", $scope.loginData.username);
@@ -117,7 +116,6 @@ alert("h5!");
     });
     $scope.modal.hide();
   };
-  alert("ho!");
 })
 
 ////////////////////////////////////////////////////////////////////////////////
