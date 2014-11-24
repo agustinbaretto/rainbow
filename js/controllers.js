@@ -7,7 +7,7 @@ angular.module('starter.controllers', ['ionic'])
     scope: $scope
   }).then(function(modal) {
     $scope.modal = modal;
-    $scope.getLoginStatus();
+    //$scope.getLoginStatus();
   });
   
   //Form data for the login modal
