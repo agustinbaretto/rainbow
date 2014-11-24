@@ -10,7 +10,7 @@ angular.module('starter.controllers', ['ionic'])
     $scope.modal = modal;
     //$scope.getLoginStatus();
   });
-  alert("ho!");
+ 
   //Form data for the login modal
   $scope.loginData = {};
   $scope.user = new Parse.User();
