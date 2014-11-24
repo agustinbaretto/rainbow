@@ -14,8 +14,6 @@ angular.module('starter.controllers', ['ionic'])
   $scope.loginData = {};
   $scope.user = new Parse.User();
 
-  
-
   $scope.closeLogin = function() {
     $scope.modal.hide();
   };
