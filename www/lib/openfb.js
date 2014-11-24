@@ -21,9 +21,9 @@ var openFB = (function () {
 
         baseURL = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + context,
 
-        oauthRedirectURL = baseURL + '/rainbow/Rainbow/www/oauthcallback.html',
+        oauthRedirectURL = baseURL + '/rainbow/www/oauthcallback.html',
 
-        logoutRedirectURL = baseURL + '/rainbow/Rainbow/www/logoutcallback.html',
+        logoutRedirectURL = baseURL + '/rainbow/www/logoutcallback.html',
 
         // Because the OAuth login spans multiple processes, we need to keep the login callback function as a variable
         // inside the module instead of keeping it local within the login function.
