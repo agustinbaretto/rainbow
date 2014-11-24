@@ -2,6 +2,7 @@ angular.module('starter.controllers', ['ionic'])
 .constant('FORECASTIO_KEY', '79a4cc625c1b8c577a215fa9ae661ded')
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+  alert("hi!");
   //Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
     scope: $scope
