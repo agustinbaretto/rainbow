@@ -67,6 +67,7 @@ angular.module('starter.controllers', ['ionic'])
   $scope.parseLogin = function() {
     Parse.User.logIn($scope.user.get("username"), $scope.user.get("fbid"), {
       success: function(user) {
+        alert(3);
         $scope.user = user;
       },
       error: function(user, error) {
@@ -160,7 +161,7 @@ angular.module('starter.controllers', ['ionic'])
     moodObj.save(null, {
         success: function(moodColor) {
         // Execute any logic that should take place after the object is saved.
-        //alert('New object created with objectId: ' + moodColor.id);
+        alert('New object created with objectId: ' + moodColor.id);
       },
         error: function(gameScore, error) {
         // Execute any logic that should take place if the save fails.
