@@ -49,7 +49,6 @@ angular.module('starter.controllers', ['ionic'])
                   $scope.$apply(function() {
                       $scope.user.set("username", res.name);
                       $scope.user.set("fbid", res.id);
-                      alert(res.name);
                   });
                   $scope.parseLogin();
               },
@@ -174,12 +173,12 @@ angular.module('starter.controllers', ['ionic'])
     $scope.user.save(null, {
       success: function(user) {
         // Execute any logic that should take place after the object is saved.
-        //alert('New object created with objectId: ' + user.id);
+        alert('New object created with objectId: ' + user.id);
       },
       error: function(gameScore, error) {
         // Execute any logic that should take place if the save fails.
         // error is a Parse.Error with an error code and message.
-        //alert('Failed to create new object, with error code: ' + error.message);
+        alert('Failed to create new object, with error code: ' + error.message);
       }
     });
     $location.path('/app/profiles/'+$scope.user.id);
