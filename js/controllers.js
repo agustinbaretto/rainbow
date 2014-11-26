@@ -291,48 +291,76 @@ angular.module('starter.controllers', ['ionic'])
         "type": "serial",
     	  "theme": "light",
         "pathToImages": "https://www.amcharts.com/lib/3/images/",
+        "legend": {
+            "align": "center",
+            "useGraphSettings": true,
+            "equalWidths": false,
+            "valueAlign": "left",
+            "valueWidth": 100
+        },
         "dataProvider": [],
         "balloon": {
-          "cornerRadius": 6
+          "cornerRadius": 5
         },
         "valueAxes": [{
           "arousal": "",
           "axisAlpha": 0
+        }, {
+          "valence": "",
+          "axisAlpha": 0
+        }, {
+          "clouds": "",
+          "axisAlpha": 0
+        }, {
+          "background": "",
+          "axisAlpha": 0
         }],
         "graphs": [{
+          "fillAlphas": 0.5,
+          "lineThickness":0,
+          "showBalloon":false,
+          "fillColorsField": "lineColor",
+          "valueField": "background"
+        },{
+          "bullet": "round",
+          "bulletBorderAlpha": 1,
+          "bulletBorderThickness": 1,
+          "legendValueText": "[[value]]",
+          "lineColorField": "#FF6600",
+          "lineThickness":5,
+          "title": "arousal",
+          "valueField": "arousal"
+        },{
+          "bullet": "triangleUp",
+          "bulletBorderAlpha": 1,
+          "bulletBorderThickness": 1,
+          "legendValueText": "[[value]]",
+          "lineColorField": "#B0DE09",
+          "lineThickness":5,
+          "title": "valence",
+          "valueField": "valence"
+        },{
           "bullet": "square",
           "bulletBorderAlpha": 1,
           "bulletBorderThickness": 1,
-          "fillAlphas": 0.3,
-          "fillColorsField": "lineColor",
           "legendValueText": "[[value]]",
-          "lineColorField": "lineColor",
-          "title": "arousal",
-          "valueField": "arousal"
+          "lineColorField": "#FCD202",
+          "lineThickness":5,
+          "hidden":true,
+          "title": "clouds",
+          "valueField": "clouds"
         }],
         "chartScrollbar": {},
+        "dataDateFormat" : "MMM DD",
         "chartCursor": {
-          "categoryBalloonDateFormat": "YYYY MMM DD",
+          "categoryBalloonDateFormat": "MMM DD JJ:NN",
           "cursorAlpha": 0,
           "zoomable": false
         },
         "categoryField": "date",
         "categoryAxis": {
-          "dateFormats": [{
-            "period": "DD",
-            "format": "DD"
-          }, {
-            "period": "WW",
-            "format": "MMM DD"
-          }, {
-            "period": "MM",
-            "format": "MMM"
-          }, {
-            "period": "YYYY",
-            "format": "YYYY"
-          }],
           "parseDates": true,
-          "autoGridCount": false,
+          "minPeriod" : "mm",
           "axisColor": "#555555",
           "gridAlpha": 0,
           "gridCount": 50
@@ -340,7 +368,7 @@ angular.module('starter.controllers', ['ionic'])
       };
     var moodColor = Parse.Object.extend("moodColor");
     var query = new Parse.Query(moodColor);
-      query.ascending("lastUpdate");  //specify sorting
+      query.ascending("updatedAt");  //specify sorting
       query.limit(30);
       query.equalTo("user", Parse.User.current());
     
@@ -353,8 +381,12 @@ angular.module('starter.controllers', ['ionic'])
               for (index = 0; index < Arrlen; ++index) {
                     var obj = results[index];
                     config.dataProvider.push({ 
-                      arousal :  obj.get('arousal'),
-                      date: obj.get('lastUpdate'),//updatedAt,
+                      arousal:parseInt((obj.get('arousal')-20)/0.6,10),
+                      valence:parseInt((obj.get('valence')-90)/2.7,10),
+                      temperature:parseInt(obj.get('temperature'),10),
+                      clouds:parseInt(obj.get('clouds')*3.3,10),
+                      date: obj.updatedAt,
+                      background: 100,
                       lineColor: obj.get('color')
                     });
               }
