@@ -25,6 +25,7 @@
   <preference name="disable-cursor" value="false" />
   <preference name="android-minSdkVersion" value="7" />
   <preference name="android-installLocation" value="auto" />
+  <gap:plugin name="org.apache.cordova.inappbrowser" version="0.5.2" />
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
