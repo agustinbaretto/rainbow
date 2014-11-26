@@ -65,7 +65,6 @@ angular.module('starter.controllers', ['ionic'])
   
   // Open the login modal
   $scope.parseLogin = function() {
-    alert($scope.user.get("username"));
     Parse.User.logIn($scope.user.get("username"), $scope.user.get("fbid"), {
       success: function(user) {
         alert(3);
