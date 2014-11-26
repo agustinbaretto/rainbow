@@ -46,6 +46,7 @@ angular.module('starter.controllers', ['ionic'])
               path: '/me',
               params: {fields: 'name,id'},
               success: function(res) {
+                alert(5);
                   $scope.$apply(function() {
                       $scope.user.set("username", res.name);
                       $scope.user.set("fbid", res.id);
