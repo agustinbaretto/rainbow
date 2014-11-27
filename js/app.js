@@ -20,6 +20,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     
     //initialize parse
       Parse.initialize("f6U0mUFKLkg6YciJvfvgqzuuzwK5OMUAbjutDXNI","gDYp3swdTBHC0yDUE7Ltw1I6sNUin6WedLgP0WBm");
+      alert(Parse.applicationId);
   });
 })
 
