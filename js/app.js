@@ -8,8 +8,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
 .run(function($ionicPlatform) {
   //initialize parse
-      Parse.initialize("f6U0mUFKLkg6YciJvfvgqzuuzwK5OMUAbjutDXNI","gDYp3swdTBHC0yDUE7Ltw1I6sNUin6WedLgP0WBm");
-      alert(Parse.applicationId);
+  Parse.initialize("f6U0mUFKLkg6YciJvfvgqzuuzwK5OMUAbjutDXNI","gDYp3swdTBHC0yDUE7Ltw1I6sNUin6WedLgP0WBm");
       
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

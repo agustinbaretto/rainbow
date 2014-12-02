@@ -9,11 +9,8 @@
     </header>
     <ion-content class="has-header">
       <ion-list>
-        <ion-item nav-clear menu-close ng-click="login()">
-          Logout
-        </ion-item>
         <ion-item nav-clear menu-close href="#/app/rainbow">
-          Rainbow me
+          Rainbow me!
         </ion-item>
         <ion-item nav-clear menu-close href="#/app/history">
           History
@@ -21,8 +18,8 @@
         <ion-item nav-clear menu-close href="#/app/friends">
           My Friends
         </ion-item>
-        <ion-item nav-clear menu-close href="#/app/profile">
-          Profile
+        <ion-item nav-clear menu-close href="#/app/profiles/{{user.id}}">
+          My Color
         </ion-item>
       </ion-list>
     </ion-content>
