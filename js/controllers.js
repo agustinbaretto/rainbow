@@ -249,8 +249,7 @@ angular.module('starter.controllers', ['ionic'])
 ////////////////////////////////////////////////////////////////////////////////
 
 
-.controller('ProfileCtrl', function($scope, $stateParams, $cordovaSplashscreen) {
-  $cordovaSplashscreen.show();
+.controller('ProfileCtrl', function($scope, $stateParams) {
   var profileId = $stateParams.profileId;
   $scope.profile = {};
   var data = window.localStorage.getItem('profile'+profileId);
