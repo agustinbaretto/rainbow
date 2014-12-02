@@ -4,9 +4,14 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova'])
 
-.run(function($ionicPlatform) {
+//.run(function($ionicPlatform) {
+app.run(function($cordovaSplashscreen) {
+  setTimeout(function() {
+    $cordovaSplashscreen.hide()
+  }, 5000)
+}){
   //initialize parse
   Parse.initialize("f6U0mUFKLkg6YciJvfvgqzuuzwK5OMUAbjutDXNI","gDYp3swdTBHC0yDUE7Ltw1I6sNUin6WedLgP0WBm");
       
