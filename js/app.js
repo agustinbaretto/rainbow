@@ -6,12 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova'])
 
-//.run(function($ionicPlatform) {
-app.run(function($cordovaSplashscreen) {
-  setTimeout(function() {
-    $cordovaSplashscreen.hide()
-  }, 5000)
-}){
+.run(function($ionicPlatform) {
   //initialize parse
   Parse.initialize("f6U0mUFKLkg6YciJvfvgqzuuzwK5OMUAbjutDXNI","gDYp3swdTBHC0yDUE7Ltw1I6sNUin6WedLgP0WBm");
       
