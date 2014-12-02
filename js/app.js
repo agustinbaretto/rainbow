@@ -53,6 +53,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
     
+    .state('app.map', {
+      url: "/map",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/map.html",
+          controller: 'MapCtrl'
+        }
+      }
+    })
+    
     .state('app.friends', {
       url: "/friends",
       views: {

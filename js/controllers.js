@@ -287,7 +287,9 @@ angular.module('starter.controllers', ['ionic'])
 ////////////////////////////////////////////////////////////////////////////////
 
 .controller('HistoryCtrl', function($scope, $stateParams) {
-    var config = {
+    $scope.graph = {axis:"arousal"};
+    $scope.config = null;
+    $scope.config = {
         "type": "serial",
     	  "theme": "light",
         "pathToImages": "https://www.amcharts.com/lib/3/images/",
@@ -316,12 +318,6 @@ angular.module('starter.controllers', ['ionic'])
           "axisAlpha": 0
         }],
         "graphs": [{
-          "fillAlphas": 0.5,
-          "lineThickness":0,
-          "showBalloon":false,
-          "fillColorsField": "lineColor",
-          "valueField": "background"
-        },{
           "bullet": "round",
           "bulletBorderAlpha": 1,
           "bulletBorderThickness": 1,
@@ -329,7 +325,9 @@ angular.module('starter.controllers', ['ionic'])
           "lineColorField": "#FF6600",
           "lineThickness":5,
           "title": "arousal",
-          "valueField": "arousal"
+          "valueField": "arousal",
+          "fillAlphas": 0.5,
+          "fillColorsField": "lineColor"
         },{
           "bullet": "triangleUp",
           "bulletBorderAlpha": 1,
@@ -338,7 +336,10 @@ angular.module('starter.controllers', ['ionic'])
           "lineColorField": "#B0DE09",
           "lineThickness":5,
           "title": "valence",
-          "valueField": "valence"
+          "valueField": "valence",
+          "fillAlphas": 0.5,
+          "hidden":true,
+          "fillColorsField": "lineColor"
         },{
           "bullet": "square",
           "bulletBorderAlpha": 1,
@@ -346,11 +347,12 @@ angular.module('starter.controllers', ['ionic'])
           "legendValueText": "[[value]]",
           "lineColorField": "#FCD202",
           "lineThickness":5,
-          "hidden":true,
           "title": "clouds",
-          "valueField": "clouds"
+          "valueField": "clouds",
+          "fillAlphas": 0.5,
+          "hidden":true,
+          "fillColorsField": "lineColor"
         }],
-        "chartScrollbar": {},
         "dataDateFormat" : "MMM DD",
         "chartCursor": {
           "categoryBalloonDateFormat": "MMM DD JJ:NN",
@@ -380,7 +382,7 @@ angular.module('starter.controllers', ['ionic'])
     
               for (index = 0; index < Arrlen; ++index) {
                     var obj = results[index];
-                    config.dataProvider.push({ 
+                    $scope.config.dataProvider.push({ 
                       arousal:parseInt((obj.get('arousal')-20)/0.6,10),
                       valence:parseInt((obj.get('valence')-90)/2.7,10),
                       temperature:parseInt(obj.get('temperature'),10),
@@ -390,13 +392,48 @@ angular.module('starter.controllers', ['ionic'])
                       lineColor: obj.get('color')
                     });
               }
-              var chart = AmCharts.makeChart("chartdiv", config);
+              var chart = AmCharts.makeChart("chartdiv", $scope.config);
           });     
       },
       error:function(error) {
             console.log("Error retrieving history!");
       }
     }); //end query.find
+  $scope.change = function() {
+    if($scope.graph.axis == "arousal"){
+      $scope.config.graphs[0].hidden = false;
+      $scope.config.graphs[1].hidden = true;
+      $scope.config.graphs[2].hidden = true;
+    }
+    if($scope.graph.axis == "valence"){
+      $scope.config.graphs[0].hidden = true;
+      $scope.config.graphs[1].hidden = false;
+      $scope.config.graphs[2].hidden = true;
+    }
+    if($scope.graph.axis == "weather"){
+      $scope.config.graphs[0].hidden = true;
+      $scope.config.graphs[1].hidden = true;
+      $scope.config.graphs[2].hidden = false;
+    }
+    var chart = AmCharts.makeChart("chartdiv", $scope.config);
+  };
+})
 
-  
+.controller('MapCtrl', function($scope, $ionicLoading) {
+  // Create a simple map.
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 4,
+    center: {lat: -28, lng: 137.883}
+  });
+
+//  navigator.geolocation.getCurrentPosition(function(pos) {
+//      map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+//      var myLocation = new google.maps.Marker({
+//          position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
+//          map: map,
+//          title: "My Location"
+//      });
+//  });
+  map.data.loadGeoJson('https://preview.c9.io/agustinbaretto/rainbow/map.json');
+  $scope.map = map;
 });
