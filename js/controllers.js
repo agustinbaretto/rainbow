@@ -39,7 +39,7 @@ angular.module('starter.controllers', ['ionic'])
   //Logs in to FB and returns user
   $scope.fbLogin = function() {
     openFB.login(
-      function(response) {alert(response.status);
+      function(response) {
         if (response.status === 'connected') {
           openFB.api({
               path: '/me',
@@ -425,7 +425,8 @@ angular.module('starter.controllers', ['ionic'])
   };
 })
 
-.controller('MoodmapCtrl', function($scope) {
+.controller('MoodmapCtrl', function($scope, $ionicLoading) {
+  $scope.loading = $ionicLoading.show({showBackdrop: true});
   $scope.map = new google.maps.Map(document.getElementById('moodmap'), {
     zoom: 15
   });
@@ -468,10 +469,11 @@ angular.module('starter.controllers', ['ionic'])
       var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
       $scope.map.setCenter(pos);
+      $scope.loading.hide();
       var myLocation = new google.maps.Marker({
             position: pos,
             map: $scope.map,
-            title: "My Location"
+            title: "You"
         });
     }, function() {
       $scope.handleNoGeolocation(true);
