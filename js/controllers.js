@@ -428,25 +428,18 @@ angular.module('starter.controllers', ['ionic'])
 })
 
 .controller('MapCtrl', function($scope, $ionicLoading) {
-  var useragent = navigator.userAgent;
-  var mapdiv = document.getElementById("map_canvas");
-
-  if (useragent.indexOf('iPhone') != -1 || useragent.indexOf('Android') != -1 ) {
-    mapdiv.style.width = '100%';
-    mapdiv.style.height = '100%';
-  } else {
-    mapdiv.style.width = '600px';
-    mapdiv.style.height = '800px';
-  }
-  
-  var mapOptions = {
-    zoom: 8,
-    center: new google.maps.LatLng(-34.397, 150.644)
+  //google.maps.event.addDomListener(window, 'load', function() {
+  $scope.initialise = function() {
+    var mapOptions = {
+      zoom: 8,
+      center: new google.maps.LatLng(-34.397, 150.644)
+    };
+    map = new google.maps.Map(document.getElementById('map'),
+        mapOptions);
   };
-  map = new google.maps.Map(document.getElementById('map_canvas'),
-      mapOptions);
-  
-  /*$scope.map = new google.maps.Map(document.getElementById('map_canvas'), {
+  //});
+  google.maps.event.addDomListener(document.getElementById("map"), 'load', $scope.initialise());
+  /*$scope.map = new google.maps.Map(document.getElementById('map'), {
     zoom: 15
   });
   
