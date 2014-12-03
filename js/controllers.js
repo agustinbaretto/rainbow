@@ -1,5 +1,6 @@
 angular.module('starter.controllers', ['ionic'])
 .constant('FORECASTIO_KEY', '79a4cc625c1b8c577a215fa9ae661ded')
+.constant('GOOGLEAPI_KEY', '79a4cc625c1b8c577a215fa9ae661ded')
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
   //Create the login modal that we will use later
@@ -121,6 +122,12 @@ angular.module('starter.controllers', ['ionic'])
 ////////////////////////////////////////////////////////////////////////////////
 
 .controller('RainbowCtrl', function($scope, $location, Weather) {
+  $scope.location = null;
+  if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      $scope.location = new Parse.GeoPoint({latitude: position.coords.latitude, longitude: position.coords.longitude});
+    });
+  }
   $scope.mood = {valence:227, arousal:50};
   
   $scope.city  = "Rochester";
@@ -157,6 +164,7 @@ angular.module('starter.controllers', ['ionic'])
     moodObj.set("temperature", parseInt(mood.temperature));
     moodObj.set("color", scheme[1]);
     moodObj.set("user", $scope.user);
+    moodObj.set("location", $scope.location);
     moodObj.save(null, {
         success: function(moodColor) {
         // Execute any logic that should take place after the object is saved.
@@ -420,20 +428,75 @@ angular.module('starter.controllers', ['ionic'])
 })
 
 .controller('MapCtrl', function($scope, $ionicLoading) {
-  // Create a simple map.
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 4,
-    center: {lat: -28, lng: 137.883}
+  $scope.map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 15
   });
+  
+  var moodColor = Parse.Object.extend("moodColor");
+  var query = new Parse.Query(moodColor);
+  query.exists("location");
+  query.find({
+    success:function(results) { 
+      $scope.$apply(function() {
+        var index = 0;
+        var arrlen = results.length;
+  
+        for (index = 0; index < arrlen; ++index) {
+          var obj = results[index];
+          var moodOptions = {
+            strokeWeight: 0,
+            fillColor: obj.get('color'),
+            fillOpacity: 0.8,
+            map: $scope.map,
+            center: new google.maps.LatLng(obj.get('location').latitude, obj.get('location').longitude),
+            radius: 50
+          };
+          // Add the circle for this city to the map.
+          moodCircle = new google.maps.Circle(moodOptions);
+        }
+        //window.localStorage.setItem('rainbowMap', JSON.stringify(rainbowMap));
+      });     
+    },
+    error:function(error) {
+      console.log("Error retrieving map colors!");
+    }
+  }); //end query.find
 
-//  navigator.geolocation.getCurrentPosition(function(pos) {
-//      map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-//      var myLocation = new google.maps.Marker({
-//          position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
-//          map: map,
-//          title: "My Location"
-//      });
-//  });
-  map.data.loadGeoJson('https://preview.c9.io/agustinbaretto/rainbow/map.json');
-  $scope.map = map;
+  var moodCircle;
+
+  // Try HTML5 geolocation
+  if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+      $scope.map.setCenter(pos);
+      var myLocation = new google.maps.Marker({
+            position: pos,
+            map: $scope.map,
+            title: "My Location"
+        });
+    }, function() {
+      $scope.handleNoGeolocation(true);
+    });
+  } else {
+    // Browser doesn't support Geolocation
+    $scope.handleNoGeolocation(false);
+  }
+
+  $scope.handleNoGeolocation = function (errorFlag) {
+    if (errorFlag) {
+      var content = 'Error: The Geolocation service failed.';
+    } else {
+      var content = 'Error: Your browser doesn\'t support geolocation.';
+    }
+  
+    var options = {
+      map: map,
+      position: new google.maps.LatLng(60, 105),
+      content: content
+    };
+  
+    var infowindow = new google.maps.InfoWindow(options);
+    map.setCenter(options.position);
+  }
 });
