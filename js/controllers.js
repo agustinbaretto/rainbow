@@ -190,19 +190,6 @@ angular.module('starter.controllers', ['ionic'])
     });
     $location.path('/app/profiles/'+$scope.user.id);
   };
-  
-  $scope.makeColor = function(color) {
-    alert(screen.width);
-    // prep some variables
-    var imagePath = "http://dummyimage.com/600/"+color+"/"+color+".png";
-    var imageTitle = "Color"+color;
-    var folderName = "RinbowAppImages"; 
-    var success = function() { alert("Your color now is in your phone!"); };           // Do something on success return.
-    var error = function(message) { alert("Oopsie! " + message); };   // Do something on error return.
-  
-    // For setting wallpaper & saving image
-    wallpaper.setImage(imagePath, imageTitle, folderName, success, error);
-  }
 })
 
 
@@ -300,8 +287,22 @@ angular.module('starter.controllers', ['ionic'])
         error:function(error) {
               console.log("Error retrieving profile!");
         }
-      }); //end query.find
-   }
+    }); //end query.find
+  }
+   
+     
+  $scope.setWallpaper = function(color) {
+    alert(screen.width);
+    // prep some variables
+    var imagePath = "http://dummyimage.com/600/"+color+"/"+color+".png";
+    var imageTitle = "Color"+color;
+    var folderName = "RinbowAppImages"; 
+    var success = function() { alert("Your color now is in your phone!"); };           // Do something on success return.
+    var error = function(message) { alert("Oopsie! " + message); };   // Do something on error return.
+  
+    // For setting wallpaper & saving image
+    wallpaper.setImage(imagePath, imageTitle, folderName, success, error);
+  }
 })
 
 ////////////////////////////////////////////////////////////////////////////////
