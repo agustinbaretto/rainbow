@@ -428,15 +428,7 @@ angular.module('starter.controllers', ['ionic'])
 })
 
 .controller('MoodmapCtrl', function($scope) {
-  alert("ll");
-  //var a = document.getElementById('map');
-  // $scope.init = function() {
-  //  map = new google.maps.Map(document.getElementById('map'),{
-  //    zoom: 8,
-  //    center: new google.maps.LatLng(-34.397, 150.644)
-  //  });
-  // };
-  /*$scope.map = new google.maps.Map(document.getElementById('map'), {
+  $scope.map = new google.maps.Map(document.getElementById('map'), {
     zoom: 15
   });
   
@@ -506,5 +498,5 @@ angular.module('starter.controllers', ['ionic'])
   
     var infowindow = new google.maps.InfoWindow(options);
     map.setCenter(options.position);
-  }*/
+  }
 });
