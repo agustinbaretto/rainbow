@@ -428,10 +428,17 @@ angular.module('starter.controllers', ['ionic'])
 })
 
 .controller('MapCtrl', function($scope, $ionicLoading) {
-  $scope.map = new google.maps.Map(document.getElementById('map'), {
+  var mapOptions = {
+    zoom: 8,
+    center: new google.maps.LatLng(-34.397, 150.644)
+  };
+  map = new google.maps.Map(document.getElementById('map'),
+      mapOptions);
+  
+  /*$scope.map = new google.maps.Map(document.getElementById('map'), {
     zoom: 15
   });
-  /*
+  
   var moodColor = Parse.Object.extend("moodColor");
   var query = new Parse.Query(moodColor);
   query.exists("location");
@@ -489,7 +496,7 @@ angular.module('starter.controllers', ['ionic'])
     } else {
       var content = 'Error: Your browser doesn\'t support geolocation.';
     }
-  */
+  
     var options = {
       map: map,
       position: new google.maps.LatLng(60, 105),
@@ -498,5 +505,5 @@ angular.module('starter.controllers', ['ionic'])
   
     var infowindow = new google.maps.InfoWindow(options);
     map.setCenter(options.position);
- // }
+  }*/
 });
