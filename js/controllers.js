@@ -427,7 +427,7 @@ angular.module('starter.controllers', ['ionic'])
   };
 })
 
-.controller('MapCtrl', function($scope) {
+.controller('MoodmapCtrl', function($scope) {
   alert("ll");
   //var a = document.getElementById('map');
   // $scope.init = function() {

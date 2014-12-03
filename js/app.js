@@ -54,12 +54,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
     
-    .state('app.map', {
-      url: "/map",
+    .state('app.moodmap', {
+      url: "/moodmap",
       views: {
         'menuContent' :{
-          templateUrl: "templates/map.html",
-          controller: 'MapCtrl'
+          templateUrl: "templates/moodmap.html",
+          controller: 'MoodmapCtrl'
         }
       }
     })
