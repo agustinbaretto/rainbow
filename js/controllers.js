@@ -39,7 +39,7 @@ angular.module('starter.controllers', ['ionic'])
   //Logs in to FB and returns user
   $scope.fbLogin = function() {
     openFB.login(
-      function(response) {
+      function(response) {alert(response.status);
         if (response.status === 'connected') {
           openFB.api({
               path: '/me',
