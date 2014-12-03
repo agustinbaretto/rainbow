@@ -259,44 +259,31 @@ angular.module('starter.controllers', ['ionic'])
 .controller('ProfileCtrl', function($scope, $stateParams) {
   var profileId = $stateParams.profileId;
   $scope.profile = {};
-  var data = window.localStorage.getItem('profile'+profileId);
-  data = null;
+  
+  var userObj = Parse.Object.extend("User");
+  var query = new Parse.Query(userObj);
+  query.limit(1);  //specify limit -- fetch only 20 objects
+  query.get(profileId);
+  
+  query.find({
+    success:function(results) { 
+      $scope.$apply(function() {
+        var obj = results[0];
+        $scope.profile.id =  obj.id;
+        $scope.profile.username =  obj.get('username');
+        $scope.profile.color =  obj.get('lastColor');
+        $scope.profile.fbid =  obj.get('fbid');
+      });     
+    },
+    error:function(error) {
+      console.log("Error retrieving profile!");
+    }
+  }); //end query.find
 
-  if (data != null )  {
-      $scope.profile = JSON.parse(data);
-      console.log('using local storage');
-   }
-   else {
-     var userObj = Parse.Object.extend("User");
-     var query = new Parse.Query(userObj);
-     query.limit(1);  //specify limit -- fetch only 20 objects
-     query.get(profileId);
-  
-     query.find({
-         success:function(results) { 
-             $scope.$apply(function() {
-                var obj = results[0];
-                $scope.profile.id =  obj.id;
-                $scope.profile.username =  obj.get('username');
-                $scope.profile.color =  obj.get('lastColor');
-                $scope.profile.fbid =  obj.get('fbid');
-  
-                window.localStorage.setItem('profile'+profileId, JSON.stringify($scope.profile));
-            });     
-        },
-        error:function(error) {
-              console.log("Error retrieving profile!");
-        }
-    }); //end query.find
-  }
-   
-     
   $scope.setWallpaper = function(color) {
-    alert(screen.width);
-    // prep some variables
-    var imagePath = "http://dummyimage.com/600/"+color+"/"+color+".png";
-    var imageTitle = "Color"+color;
-    var folderName = "RinbowAppImages"; 
+    var imagePath = "http://dummyimage.com/"+screen.width+"x"+screen.height+"/"+color+"/"+color+".png";
+    var imageTitle = "Rainbow"+color;
+    var folderName = "RainbowAppImages"; 
     var success = function() { alert("Your color now is in your phone!"); };           // Do something on success return.
     var error = function(message) { alert("Oopsie! " + message); };   // Do something on error return.
   
