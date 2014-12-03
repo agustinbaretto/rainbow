@@ -281,6 +281,7 @@ angular.module('starter.controllers', ['ionic'])
   }); //end query.find
 
   $scope.setWallpaper = function(color) {
+    color = color.substr(1);
     var imagePath = "http://dummyimage.com/"+screen.width+"x"+screen.height+"/"+color+"/"+color+".png";
     var imageTitle = "Rainbow"+color;
     var folderName = "RainbowAppImages"; 
