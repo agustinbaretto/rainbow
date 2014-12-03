@@ -428,7 +428,7 @@ angular.module('starter.controllers', ['ionic'])
 })
 
 .controller('MoodmapCtrl', function($scope) {
-  $scope.map = new google.maps.Map(document.getElementById('map'), {
+  $scope.map = new google.maps.Map(document.getElementById('moodmap'), {
     zoom: 15
   });
   
