@@ -301,7 +301,9 @@ angular.module('starter.controllers', ['ionic'])
     var error = function(message) { alert("Oopsie! " + message); };   // Do something on error return.
   
     // For setting wallpaper & saving image
-    wallpaper.setImage(imagePath, imageTitle, folderName, success, error);
+    if (typeof wallpaper != 'undefined') {
+      wallpaper.setImage(imagePath, imageTitle, folderName, success, error);
+    }
   }
 })
 
