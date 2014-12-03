@@ -11,7 +11,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   Parse.initialize("f6U0mUFKLkg6YciJvfvgqzuuzwK5OMUAbjutDXNI","gDYp3swdTBHC0yDUE7Ltw1I6sNUin6WedLgP0WBm");
       
   $ionicPlatform.ready(function() {
-    FastClick.attach(document.body);
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if(window.cordova && window.cordova.plugins.Keyboard) {
