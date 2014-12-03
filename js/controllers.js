@@ -156,20 +156,7 @@ angular.module('starter.controllers', ['ionic'])
       	scheme_type: "monochromatic",
       	format: "hex"
     });
-    // prep some variables
-  var imagePath = "http://dummyimage.com/300/09f/09f.png"; // Mention the complete path to your image. If it contains under multiple folder then mention the path from level "www" to the level your image contains with its name including its extension.
-  var imageTitle = "Color";                     // Set title of your choice.
-  var folderName = "PluginImages";                  // Set folder Name of your choice. 
-  var success = function() { alert("Success"); };           // Do something on success return.
-  var error = function(message) { alert("Oopsie! " + message); };   // Do something on error return.
-
-  // For setting wallpaper & saving image
-  wallpaper.setImage(imagePath, imageTitle, folderName, success, error);
-
-  // For saving image
-  //wallpaper.saveImage(imagePath, imageTitle, folderName, success, error); 
-
-  /*
+    
     moodObj.set("arousal", parseInt(mood.arousal));
     moodObj.set("valence", parseInt(mood.valence));
     moodObj.set("clouds", parseInt(mood.clouds));
@@ -201,8 +188,21 @@ angular.module('starter.controllers', ['ionic'])
         alert('Failed to create new object, with error code: ' + error.message);
       }
     });
-    $location.path('/app/profiles/'+$scope.user.id);*/
+    $location.path('/app/profiles/'+$scope.user.id);
   };
+  
+  $scope.makeColor = function(color) {
+    alert(screen.width);
+    // prep some variables
+    var imagePath = "http://dummyimage.com/600/"+color+"/"+color+".png";
+    var imageTitle = "Color"+color;
+    var folderName = "RinbowAppImages"; 
+    var success = function() { alert("Your color now is in your phone!"); };           // Do something on success return.
+    var error = function(message) { alert("Oopsie! " + message); };   // Do something on error return.
+  
+    // For setting wallpaper & saving image
+    wallpaper.setImage(imagePath, imageTitle, folderName, success, error);
+  }
 })
 
 
