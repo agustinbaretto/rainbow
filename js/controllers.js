@@ -428,13 +428,14 @@ angular.module('starter.controllers', ['ionic'])
 })
 
 .controller('MapCtrl', function($scope, $ionicLoading) {
-  var a = document.getElementById('map');
-   $scope.init = function() {
-    map = new google.maps.Map(document.getElementById('map'),{
-      zoom: 8,
-      center: new google.maps.LatLng(-34.397, 150.644)
-    });
-   };
+  alert("ll");
+  //var a = document.getElementById('map');
+  // $scope.init = function() {
+  //  map = new google.maps.Map(document.getElementById('map'),{
+  //    zoom: 8,
+  //    center: new google.maps.LatLng(-34.397, 150.644)
+  //  });
+  // };
   /*$scope.map = new google.maps.Map(document.getElementById('map'), {
     zoom: 15
   });
