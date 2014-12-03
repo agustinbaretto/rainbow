@@ -1,6 +1,5 @@
 angular.module('starter.controllers', ['ionic'])
 .constant('FORECASTIO_KEY', '79a4cc625c1b8c577a215fa9ae661ded')
-.constant('GOOGLEAPI_KEY', '79a4cc625c1b8c577a215fa9ae661ded')
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
   //Create the login modal that we will use later
@@ -23,7 +22,6 @@ angular.module('starter.controllers', ['ionic'])
     $scope.modal.show();
   };
   
-
   $scope.getLoginStatus = function() {
     openFB.getLoginStatus(
       function(response) {
@@ -491,12 +489,12 @@ angular.module('starter.controllers', ['ionic'])
     }
   
     var options = {
-      map: map,
+      map: $scope.map,
       position: new google.maps.LatLng(60, 105),
       content: content
     };
   
     var infowindow = new google.maps.InfoWindow(options);
-    map.setCenter(options.position);
+    $scope.map.setCenter(options.position);
   }
 });
