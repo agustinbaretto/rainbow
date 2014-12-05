@@ -120,7 +120,7 @@ angular.module('starter.controllers', ['ionic'])
 ////////////////////////////////////////////////////////////////////////////////
 
 .controller('RainbowCtrl', function($scope, $location, Weather) {
-  $scope.location = null;
+  $scope.location = "";
   if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
       $scope.location = new Parse.GeoPoint({latitude: position.coords.latitude, longitude: position.coords.longitude});
@@ -440,6 +440,8 @@ angular.module('starter.controllers', ['ionic'])
   var moodColor = Parse.Object.extend("moodColor");
   var query = new Parse.Query(moodColor);
   query.exists("location");
+  query.ascending("createdAt");
+  
   query.find({
     success:function(results) { 
       $scope.$apply(function() {
