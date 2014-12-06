@@ -11,7 +11,7 @@ angular.module('starter.controllers', ['ionic'])
   });
   
   //Form data for the login modal
-  $scope.loginData = {};
+  //$scope.loginData = {};
   $scope.user = new Parse.User();
 
   $scope.closeLogin = function() {
@@ -96,41 +96,26 @@ angular.module('starter.controllers', ['ionic'])
     $scope.fbLogin();
     $scope.modal.hide();
   };
-  
-  // Open the login modal
-  $scope.doLogin = function() {
-    $scope.user.set("username", $scope.loginData.username);
-    $scope.user.set("password", $scope.loginData.password);
-
-    //user.set("phone", "415-392-0202");
-     
-    $scope.user.signUp(null, {
-      success: function(user) {
-        $scope.user = user;
-      },
-      error: function(user, error) {
-        // Show the error message somewhere and let the user try again.
-        alert("Error: " + error.code + " " + error.message);
-      }
-    });
-    $scope.modal.hide();
-  };
 })
 
 ////////////////////////////////////////////////////////////////////////////////
 
 .controller('RainbowCtrl', function($scope, $location, Weather) {
-  $scope.location = "";
+  $scope.city  = "Rochester";
+  var latitude  =  43.1558;
+  var longitude = -77.6163;
+  
+  $scope.location = false;
   if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
       $scope.location = new Parse.GeoPoint({latitude: position.coords.latitude, longitude: position.coords.longitude});
+      latitude = position.coords.latitude;
+      longitude = position.coords.longitude;
     });
   }
   $scope.mood = {valence:227, arousal:50};
   
-  $scope.city  = "Rochester";
-  var latitude  =  43.1558;
-  var longitude = -77.6163;
+  
 
   //call getCurrentWeather method in factory ‘Weather’
   Weather.getCurrentWeather(latitude,longitude).then(function(resp) {
@@ -163,7 +148,7 @@ angular.module('starter.controllers', ['ionic'])
     moodObj.set("temperature", parseInt(mood.temperature));
     moodObj.set("color", scheme[1]);
     moodObj.set("user", $scope.user);
-    moodObj.set("location", $scope.location);
+    if($scope.location){moodObj.set("location", $scope.location)};
     moodObj.save(null, {
         success: function(moodColor) {
         // Execute any logic that should take place after the object is saved.
@@ -259,6 +244,11 @@ angular.module('starter.controllers', ['ionic'])
 .controller('ProfileCtrl', function($scope, $stateParams) {
   var profileId = $stateParams.profileId;
   $scope.profile = {};
+  if(profileId == Parse.User.current().id){
+    $scope.profile.owner = true;
+  }else{
+    $scope.profile.owner = false;
+  }
   
   var userObj = Parse.Object.extend("User");
   var query = new Parse.Query(userObj);
@@ -506,5 +496,6 @@ angular.module('starter.controllers', ['ionic'])
   
     var infowindow = new google.maps.InfoWindow(options);
     $scope.map.setCenter(options.position);
+    $scope.loading.hide();
   }
 });

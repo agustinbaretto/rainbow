@@ -73,7 +73,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
 
-    .state('app.single', {
+    .state('app.profile', {
       url: "/profiles/:profileId",
       views: {
         'menuContent' :{
