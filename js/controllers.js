@@ -46,8 +46,8 @@ angular.module('starter.controllers', ['ionic'])
               params: {fields: 'name,id'},
               success: function(res) {
                   $scope.$apply(function() {
-                      $scope.user.set("username", res.name);
-                      $scope.user.set("fbid", res.id);
+                    $scope.user.set("username", res.name);
+                    $scope.user.set("fbid", res.id);
                   });
                   $scope.parseLogin();
               },
@@ -209,7 +209,7 @@ angular.module('starter.controllers', ['ionic'])
    else {
        var userObj = Parse.Object.extend("User");
        var query = new Parse.Query(userObj);
-       query.descending("createdAt");  //specify sorting
+       query.ascending("lastColor");  //specify sorting
       //query.limit(20);  //specify limit -- fetch only 20 objects
 
        query.find({
@@ -431,6 +431,7 @@ angular.module('starter.controllers', ['ionic'])
   var query = new Parse.Query(moodColor);
   query.exists("location");
   query.ascending("createdAt");
+  query.limit(1000);
   
   query.find({
     success:function(results) { 
@@ -443,10 +444,10 @@ angular.module('starter.controllers', ['ionic'])
           var moodOptions = {
             strokeWeight: 0,
             fillColor: obj.get('color'),
-            fillOpacity: 0.8,
+            fillOpacity: 0.7,
             map: $scope.map,
             center: new google.maps.LatLng(obj.get('location').latitude, obj.get('location').longitude),
-            radius: 50
+            radius: 100
           };
           // Add the circle for this city to the map.
           moodCircle = new google.maps.Circle(moodOptions);
@@ -467,7 +468,7 @@ angular.module('starter.controllers', ['ionic'])
       var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
       $scope.map.setCenter(pos);
-      $scope.loading.hide();
+      $ionicLoading.hide();
       var myLocation = new google.maps.Marker({
             position: pos,
             map: $scope.map,
@@ -496,6 +497,6 @@ angular.module('starter.controllers', ['ionic'])
   
     var infowindow = new google.maps.InfoWindow(options);
     $scope.map.setCenter(options.position);
-    $scope.loading.hide();
+    $ionicLoading.hide();
   }
 });
